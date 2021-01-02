@@ -1,10 +1,13 @@
-import { Notification } from './DTO/Notification';
-import { Commands } from './commands/Commands';
-import { Platform } from 'react-native';
-import { EventsRegistryIOS } from './events/EventsRegistryIOS';
+import { Commands } from "./commands/Commands";
+import { Notification } from "./DTO/Notification";
+import { EventsRegistryIOS } from "./events/EventsRegistryIOS";
 
 export class NotificationsIOS {
-  constructor(private readonly commands: Commands, private readonly eventsRegistry: EventsRegistryIOS) {
+  constructor(
+    private readonly commands: Commands,
+    private readonly eventsRegistry: EventsRegistryIOS
+  ) {
+    /*
     return new Proxy(this, {
       get(target, name) {
         if (Platform.OS === 'ios') {
@@ -14,25 +17,26 @@ export class NotificationsIOS {
         }
       }
     });
+    */
   }
 
   /**
-  * Request permissions to send remote notifications
-  */
+   * Request permissions to send remote notifications
+   */
   public registerRemoteNotifications() {
     return this.commands.requestPermissions();
   }
 
   /**
-  * Unregister for all remote notifications received via Apple Push Notification service
-  */
+   * Unregister for all remote notifications received via Apple Push Notification service
+   */
   public abandonPermissions() {
     return this.commands.abandonPermissions();
   }
 
   /**
- * registerPushKit
- */
+   * registerPushKit
+   */
   public registerPushKit() {
     return this.commands.registerPushKit();
   }
